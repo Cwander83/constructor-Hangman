@@ -1,0 +1,23 @@
+so for hangman to work
+
+i want these things to happen
+
+game starts 
+    -auto start or click to start?
+
+blank lines show up and a question to enter which letter
+    -how many guesses or how many guesses are left??
+
+if right letter is entered 
+    -the letter replaces the blank lines
+    -the guesses change 
+
+if worng letter is entered
+    -the guesses number change
+
+when guesses run out
+    -the game ends with a winner or loser
+    -it should give a message about win and lost
+    -?? should it log the number of wins losses
+
+??how does it restart
