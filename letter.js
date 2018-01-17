@@ -2,8 +2,8 @@
 
 
 
-var Letters = function (letters) {
-    this.letters = letters;
+var Letters = function (x) {
+    this.letters = x;
     this.blank = "_";
 };
 // being sent to the word page 
