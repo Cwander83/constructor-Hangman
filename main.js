@@ -14,12 +14,12 @@ const random = wordList[Math.floor(Math.random() * wordList.length)];
 const characterGuess = "";
 //the object" that with be compared for the game
 const myWord = new Word(random, characterGuess);
-let displayGuesses = myWord.guesses;
-let displayWord = myWord.arrayJoined;
+//let displayGuesses = myWord.guesses;
+let displayWord = myWord.arrayJoinedAgain;
 //let displayGuessesLeft = myWord.numberLeft;
 
 console.log("word: " + JSON.stringify(myWord, null, 2));
-console.log("number of guesses: " + myWord.numberLeft);
+console.log("number of guesses: " + displayWord);
 
 inquirer.prompt([{
         type: "confirm",
@@ -27,7 +27,7 @@ inquirer.prompt([{
         name: "confirm",
         default: true
     }])
-    .then(function (inquirerResponse) {
+    .then((inquirerResponse) => {
         if (inquirerResponse.confirm) {
             gameRun();
 
@@ -44,7 +44,7 @@ function gameRun() {
             message: "Pick Your Letter?",
 
         }])
-        .then(function (letterEntered) {
+        .then((letterEntered) => {
             characterGuess = letterEntered.hangman;
             displayWord = myWord.checker(random, characterGuess, displayWord);
             console.log(displayWord);

@@ -18,7 +18,7 @@ const Word = function (word, characters) {
     for (let i = 0; i < arrayOfWords.length; i++) {
         arrayOfWords[i] = Blank.blank;
     };
-    this.arrayJoined = arrayOfWords.join("");
+    this.arrayJoinedAgain = arrayOfWords.join("");
     this.checker = function (word, characters, showWord) {
         let Blank = new Letters(characters);
         let arrayOfWords = word.split("");
@@ -26,7 +26,7 @@ const Word = function (word, characters) {
         let rightCharacter = true;
         this.characterArray = showWord.split("");
         for (let j = 0; j < arrayOfWords.length; j++) {
-            if (this.characterArray[i] === "_ ") {
+            if (this.characterArray[j] === "_ ") {
                 if (arrayOfWords[j] !== letters) {
                     this.characterArray[j] = Blank.blank;
                     rightCharacter = false;
@@ -36,12 +36,12 @@ const Word = function (word, characters) {
                 };
             };
         };
-        this.arrayJoined = this.showWord.join("");
+        this.arrayJoinedAgain = this.showWord.join("");
         if (!rightCharacter) {
             this.userGuesses--;
             this.numberLeft--;
         };
-        return this.arrayJoined;
+        return this.arrayJoinedAgain;
     };
 };
 
