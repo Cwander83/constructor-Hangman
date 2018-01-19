@@ -1,15 +1,25 @@
 //main page where everything comes together and runs the game
 console.log("Hangman game");
 //Inquirer node 
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
 //calling other constructor functions
-Words = require("./word.js");
-randomWord = require("./random.js");
+const Word = require("./word");
 
 
-//the object that with be compared for the game
 
 
+const wordList = ["blue", "red", "black", "pink", "green", "white"];
+//the array of words scrambled
+const random = wordList[Math.floor(Math.random() * wordList.length)];
+const characterGuess = "";
+//the object" that with be compared for the game
+const myWord = new Word(random, characterGuess);
+let displayGuesses = myWord.guesses;
+let displayWord = myWord.arrayJoined;
+//let displayGuessesLeft = myWord.numberLeft;
+
+console.log("word: " + JSON.stringify(myWord, null, 2));
+console.log("number of guesses: " + myWord.numberLeft);
 
 inquirer.prompt([{
         type: "confirm",
@@ -18,11 +28,27 @@ inquirer.prompt([{
         default: true
     }])
     .then(function (inquirerResponse) {
-        // If the inquirerResponse confirms, we displays the inquirerResponse's username and pokemon from the answers.
         if (inquirerResponse.confirm) {
-            console.log("\nWelcome " + inquirerResponse);
-            console.log("Your " + inquirerResponse.pokemon + " is ready for battle!\n");
-        } else {
-            console.log("\nThat's okay " + inquirerResponse.username + ", come again when you are more sure.\n");
+            gameRun();
+
+        } else if (!inquirerResponse.confirm) {
+            console.log("Okay, Maybe next time ?)");
+            return;
         }
     });
+
+function gameRun() {
+    inquirer.prompt([{
+            name: "hangman",
+            type: "input",
+            message: "Pick Your Letter?",
+
+        }])
+        .then(function (letterEntered) {
+            characterGuess = letterEntered.hangman;
+            displayWord = myWord.checker(random, characterGuess, displayWord);
+            console.log(displayWord);
+
+            gameRun();
+        })
+}
