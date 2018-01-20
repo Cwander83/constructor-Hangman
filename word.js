@@ -22,6 +22,7 @@ const Word = function (word, character) {
     this.arrayJoinedAgain = arrayOfWords.join("");
 
     this.checker = (word, character, showWord) => {
+
         let arrayOfWords = word.split("");
         let Blank = new Letters(character);
 
@@ -33,18 +34,20 @@ const Word = function (word, character) {
         for (let j = 0; j < arrayOfWords.length; j++) {
 
             if (this.characterArray[j] === "_ ") {
-
+                //if equals a character
                 if (arrayOfWords[j] === character) {
                     this.characterArray[j] = Blank.character;
                     wrongCharacter = true;
                      this.userGuesses++;
                 } 
+                //if not stays a blank
                 else {
                     this.characterArray[j] = Blank.blank;
                    
                 };
             };
         };
+        //joined back in a string
         this.arrayJoinedAgain = this.characterArray.join("");
 
         if (wrongCharacter === false) {
