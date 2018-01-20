@@ -6,20 +6,18 @@ const inquirer = require('inquirer');
 const Word = require("./word");
 
 
-
-
 const wordList = ["blue", "red", "black", "pink", "green", "white"];
 //the array of words scrambled
 const random = wordList[Math.floor(Math.random() * wordList.length)];
-const characterGuess = "";
+let characterGuess = "";
 //the object" that with be compared for the game
 const myWord = new Word(random, characterGuess);
 //let displayGuesses = myWord.guesses;
-let displayWord = myWord.arrayJoinedAgain;
+let showWord = myWord.arrayJoinedAgain;
 //let displayGuessesLeft = myWord.numberLeft;
 
 console.log("word: " + JSON.stringify(myWord, null, 2));
-console.log("number of guesses: " + displayWord);
+console.log("number of guesses: " + showWord);
 
 inquirer.prompt([{
         type: "confirm",
@@ -46,8 +44,11 @@ function gameRun() {
         }])
         .then((letterEntered) => {
             characterGuess = letterEntered.hangman;
-            displayWord = myWord.checker(random, characterGuess, displayWord);
-            console.log(displayWord);
+            showWord = myWord.checker(random, characterGuess, showWord);
+            console.log('myWord: '+JSON.stringify(myWord,null,2));
+            console.log('characterguess: '+ characterGuess);
+            console.log('random: '+ random);
+            console.log('showword: ' + showWord);
 
             gameRun();
         })

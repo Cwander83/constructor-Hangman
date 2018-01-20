@@ -3,9 +3,9 @@
 
 
 const Letters = function (character) {
-    this.letters = character.toUpperCase();
+    this.character = character.toUpperCase();
     this.blank = "_ ";
-    this.guess = false;
+
 };
 // being sent to the word page 
 module.exports = Letters;

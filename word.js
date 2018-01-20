@@ -5,45 +5,49 @@ Letters = require("./letter.js");
 
 console.log("letter: " + Letters);
 
-const Word = function (word, characters) {
-
+const Word = function (word, character) {
     //variables for guesses
     this.numberLeft = 9;
     this.userGuesses = 0;
     //spliting up the word to array of characters
     let arrayOfWords = word.split("");
+    //takes the number of characters from the word
     this.characterNumber = arrayOfWords.length;
 
-    var Blank = new Letters(characters);
+    let Blank = new Letters(character);
     for (let i = 0; i < arrayOfWords.length; i++) {
         arrayOfWords[i] = Blank.blank;
     };
+    //after running thru the new object returns to string
     this.arrayJoinedAgain = arrayOfWords.join("");
-    this.checker = function (word, characters, showWord) {
-        let Blank = new Letters(characters);
+
+    this.checker = (word, character, showWord) => {
         let arrayOfWords = word.split("");
+        let Blank = new Letters(character);
+
         //variable for the wrong character
-        let rightCharacter = true;
+        let wrongCharacter = false;
         this.characterArray = showWord.split("");
         for (let j = 0; j < arrayOfWords.length; j++) {
             if (this.characterArray[j] === "_ ") {
-                if (arrayOfWords[j] !== letters) {
+
+                if (arrayOfWords[j] === character) {
+                    this.characterArray[j] = Blank.character;
+                    wrongCharacter = true;
+                     this.userGuesses++;
+                } else {
                     this.characterArray[j] = Blank.blank;
-                    rightCharacter = false;
-                } else if (arrayOfWords[j] === letters) {
-                    this.characterArray[j] = Blank.letters;
-                    this.userGuesses++;
+                   
                 };
             };
         };
-        this.arrayJoinedAgain = this.showWord.join("");
-        if (!rightCharacter) {
-            this.userGuesses--;
+
+        if (wrongCharacter) {
+            this.userGuesses++;
             this.numberLeft--;
         };
         return this.arrayJoinedAgain;
     };
 };
 
-//console.log('word: '+JSON.stringify(Word, null, 2));
 module.exports = Word;
