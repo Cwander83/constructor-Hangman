@@ -27,25 +27,31 @@ const Word = function (word, character) {
 
         //variable for the wrong character
         let wrongCharacter = false;
+
         this.characterArray = showWord.split("");
+
         for (let j = 0; j < arrayOfWords.length; j++) {
+
             if (this.characterArray[j] === "_ ") {
 
                 if (arrayOfWords[j] === character) {
                     this.characterArray[j] = Blank.character;
                     wrongCharacter = true;
                      this.userGuesses++;
-                } else {
+                } 
+                else {
                     this.characterArray[j] = Blank.blank;
                    
                 };
             };
         };
+        this.arrayJoinedAgain = this.characterArray.join("");
 
-        if (wrongCharacter) {
+        if (wrongCharacter === false) {
             this.userGuesses++;
             this.numberLeft--;
         };
+
         return this.arrayJoinedAgain;
     };
 };

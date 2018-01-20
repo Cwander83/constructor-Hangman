@@ -17,7 +17,7 @@ let showWord = myWord.arrayJoinedAgain;
 //let displayGuessesLeft = myWord.numberLeft;
 
 console.log("word: " + JSON.stringify(myWord, null, 2));
-console.log("number of guesses: " + showWord);
+console.log("showword: " + showWord);
 
 inquirer.prompt([{
         type: "confirm",
