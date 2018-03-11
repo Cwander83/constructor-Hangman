@@ -4,7 +4,7 @@
 
 const Letters = function (character) {
     this.character = character.toUpperCase();
-    this.blank = "_ ";
+    this.blank = "_" ;
 
 };
 // being sent to the word page 

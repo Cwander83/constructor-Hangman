@@ -3,59 +3,66 @@
 //linking the letter.js page
 Letters = require("./letter.js");
 
-console.log("letter: " + Letters);
-
-const Word = function (word, character) {
-    //variables for guesses
-    this.numberLeft = 9;
+var Word = function (word, character) {
+   
+    this.numberGuessesLeft = 9;
     this.userGuesses = 0;
-    //spliting up the word to array of characters
-    let arrayOfWords = word.split("");
-    //takes the number of characters from the word
-    this.characterNumber = arrayOfWords.length;
 
-    let Blank = new Letters(character);
-    for (let i = 0; i < arrayOfWords.length; i++) {
-        arrayOfWords[i] = Blank.blank;
+    var arrayOfWords = word.split("");
+
+    //takes the number of characters from the word
+    this.numberOfCharacters = arrayOfWords.length;
+
+    var letterOrBlank = new Letters(character);
+
+    for (var i = 0; i < arrayOfWords.length; i++) {
+
+        arrayOfWords[i] = letterOrBlank.blank;
     };
     //after running thru the new object returns to string
-    this.arrayJoinedAgain = arrayOfWords.join("");
+    this.display = arrayOfWords.join("");
 
-    this.checker = (word, character, showWord) => {
+    this.checker = (word, character, wordDisplay) => {
 
-        let arrayOfWords = word.split("");
-        let Blank = new Letters(character);
+        var arrayOfWords = word.split("");
+
+        var letterOrBlank = new Letters(character);
 
         //variable for the wrong character
-        let wrongCharacter = false;
+        var correctGuess = false;
 
-        this.characterArray = showWord.split("");
+        this.characterArray = wordDisplay.split("");
 
-        for (let j = 0; j < arrayOfWords.length; j++) {
+        for (var j = 0; j < arrayOfWords.length; j++) {
 
-            if (this.characterArray[j] === "_ ") {
+            if (this.characterArray[j] === "_") {
                 //if equals a character
                 if (arrayOfWords[j] === character) {
-                    this.characterArray[j] = Blank.character;
-                    wrongCharacter = true;
-                     this.userGuesses++;
-                } 
+
+                    this.characterArray[j] = letterOrBlank.character;
+
+                    correctGuess = true;
+
+                    this.userGuesses++;
+                }
                 //if not stays a blank
                 else {
-                    this.characterArray[j] = Blank.blank;
-                   
+                    this.characterArray[j] = letterOrBlank.blank;
+
                 };
             };
         };
         //joined back in a string
-        this.arrayJoinedAgain = this.characterArray.join("");
+        this.display = this.characterArray.join("");
 
-        if (wrongCharacter === false) {
-            this.userGuesses++;
-            this.numberLeft--;
+        if (correctGuess === false) {
+
+            //this.userGuesses++;
+
+            this.numberGuessesLeft--;
         };
 
-        return this.arrayJoinedAgain;
+        return this.display;
     };
 };
 
